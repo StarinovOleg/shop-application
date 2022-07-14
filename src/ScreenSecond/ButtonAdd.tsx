@@ -24,5 +24,6 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     position: 'absolute',
+    zIndex: 9999999999999,
   },
 });

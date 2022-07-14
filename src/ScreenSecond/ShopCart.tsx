@@ -5,7 +5,7 @@ export default function ShopCart(props) {
   return (
     <View style={styles.container}>
       <ButtonAdd />
-      <Image source={require('../../assets/icons/back-arrow.png')} />
+      <Image style={styles.picture} source={{uri: props.img}} />
       <Text style={styles.price}>{props.price}</Text>
       <Text style={styles.about}>Include:{props.about}</Text>
     </View>
@@ -20,12 +20,17 @@ const styles = StyleSheet.create({
     margin: 2,
     textAlign: 'center',
     width: 150,
-    height: 300,
+    height: 200,
   },
   price: {
     textAlign: 'center',
   },
   about: {
     textAlign: 'left',
+  },
+  picture: {
+    width: '100%',
+    borderRadius: 10,
+    height: '50%',
   },
 });
