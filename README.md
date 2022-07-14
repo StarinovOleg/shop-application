@@ -1,1 +1,1 @@
-# shop-application
+# Shop-application with React Native
