@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Header from '../MainLayout/Header';
+import useAddCustomer from '../hooks/customer-hook';
 import {
   ScrollView,
   StyleSheet,
@@ -8,22 +9,36 @@ import {
   TextInput,
   Button,
   Text,
+  Alert,
 } from 'react-native';
 import ButtonBack from '../ScreenSecond/ButtonBack';
 import {useForm, Controller} from 'react-hook-form';
 export default function ScreenThree(props) {
+  //const [name, setName] = useState('');
+  //const [order, setOrder] = useState('');
+  //const [phone, setPhone] = useState('');
+  const queryaddemail = useAddCustomer();
   const count = 0;
   const {
     control,
     handleSubmit,
+    reset,
     formState: {errors},
   } = useForm({
     defaultValues: {
       firstName: '',
       phone: '',
+      order: '',
     },
   });
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    const emp = {...data};
+    queryaddemail.mutate(emp);
+    Alert.alert('Your order success');
+    props.navigation.navigate('ScreenOne');
+    reset({...data});
+  };
+
   return (
     <View style={styles.backgroundBody}>
       <ScrollView
@@ -50,6 +65,7 @@ export default function ScreenThree(props) {
                   value={value}
                   placeholder="Name"
                 />
+                <Text>{value}</Text>
               </>
             )}
             name="firstName"
@@ -87,6 +103,22 @@ export default function ScreenThree(props) {
           {errors.phone && (
             <Text>Here not correct or empty email. Use format: 0123456789</Text>
           )}
+          <Controller
+            control={control}
+            render={({field: {onChange, value}}) => (
+              <>
+                <TextInput
+                  style={styles.removeStyleInput}
+                  editable={false}
+                  selectTextOnFocus={false}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              </>
+            )}
+            name="order"
+          />
+
           <Button
             title="Submit"
             onPress={handleSubmit(onSubmit)}
@@ -118,8 +150,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     margin: 5,
   },
+  removeStyleInput: {
+    backgroundColor: 'none',
+    borderWidth: 0,
+  },
   titlePage: {
-    fontSize: 20,
+    fontSize: 40,
     color: '#661A0A',
     padding: 3,
     fontFamily: 'Poppins-Medium',
