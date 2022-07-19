@@ -22,7 +22,7 @@ export default function ScreenSecond(props) {
         <Header count={count} onPress={onCheckout} />
         <ButtonBack onPress={() => props.navigation.goBack()} />
         <Text>{val}</Text>
-        <Shop onPress={() => setVal('hi')} />
+        <Shop />
       </ScrollView>
     </View>
   );

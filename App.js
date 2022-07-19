@@ -19,7 +19,7 @@ const queryClient = new QueryClient({
   },
 });
 const App: () => Node = ({navigation}) => {
-  const [val, setVal] = useState('check context');
+  const [val, setVal] = useState([]);
 
   return (
     <NavigationContainer>

@@ -50,10 +50,10 @@ export default function ScreenThree(props) {
         <Header count={count} />
         <ButtonBack onPress={() => props.navigation.goBack()} />
         <View style={styles.buttonContainer}>
-          <Text style={styles.titlePage}>Your order:</Text>
-          <Text style={styles.titleOrder}>Name items:</Text>
-          <Text style={styles.titleOrder}>Total price:</Text>
-          <Text>{val}</Text>
+          <Text style={styles.titlePage}>Your order</Text>
+          <Text style={styles.titleOrder}>Name items:{val[1]}</Text>
+          <Text style={styles.titleOrder}>Total price:{val[0]}</Text>
+
           <Controller
             control={control}
             rules={{

@@ -1,10 +1,13 @@
 import React from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import ShopCart from './ShopCart';
 import useGetProducts from '../hooks/get-product-hook';
+import {useContext} from 'react';
+import ShopContext from '../Common/ShopContext';
 export default function Shop(props) {
   const products = useGetProducts();
-  const {onPress} = props;
+  //const {onPress} = props;
+  const {val, setVal} = useContext(ShopContext);
   const listItems = products?.map((item, index) => (
     <View style={styles.containerItem} key={index}>
       <ShopCart
@@ -14,7 +17,7 @@ export default function Shop(props) {
         /* onPress={() => {
           Alert.alert('ok');
         }}*/
-        onPress={onPress}
+        onPress={() => setVal([item.price, item.product_name])}
       />
     </View>
   ));
