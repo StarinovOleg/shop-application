@@ -1,15 +1,18 @@
 import React from 'react';
 
 import Header from '../MainLayout/Header';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View, Button, Text} from 'react-native';
 import ButtonBack from './ButtonBack';
 import Shop from './Shop';
+import {useContext} from 'react';
+import ShopContext from '../Common/ShopContext';
 
 export default function ScreenSecond(props) {
   const count = 0;
   const onCheckout = () => {
     props.navigation.navigate('ScreenThree');
   };
+  const {val, setVal} = useContext(ShopContext);
 
   return (
     <View style={styles.backgroundBody}>
@@ -18,6 +21,7 @@ export default function ScreenSecond(props) {
         style={styles.viewContainer}>
         <Header count={count} onPress={onCheckout} />
         <ButtonBack onPress={() => props.navigation.goBack()} />
+        <Text>{val}</Text>
         <Shop />
       </ScrollView>
     </View>

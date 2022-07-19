@@ -13,12 +13,15 @@ import {
 } from 'react-native';
 import ButtonBack from '../ScreenSecond/ButtonBack';
 import {useForm, Controller} from 'react-hook-form';
+import {useContext} from 'react';
+import ShopContext from '../Common/ShopContext';
 export default function ScreenThree(props) {
   //const [name, setName] = useState('');
   //const [order, setOrder] = useState('');
   //const [phone, setPhone] = useState('');
   const queryaddemail = useAddCustomer();
   const count = 0;
+  const {val, setVal} = useContext(ShopContext);
   const {
     control,
     handleSubmit,
@@ -47,9 +50,10 @@ export default function ScreenThree(props) {
         <Header count={count} />
         <ButtonBack onPress={() => props.navigation.goBack()} />
         <View style={styles.buttonContainer}>
-          <Text style={styles.titlePage}>Your order:</Text>
-          <Text style={styles.titleOrder}>Name items:</Text>
-          <Text style={styles.titleOrder}>Total price:</Text>
+          <Text style={styles.titlePage}>Your order</Text>
+          <Text style={styles.titleOrder}>Name items:{val[1]}</Text>
+          <Text style={styles.titleOrder}>Total price:{val[0]}</Text>
+
           <Controller
             control={control}
             rules={{
@@ -65,7 +69,6 @@ export default function ScreenThree(props) {
                   value={value}
                   placeholder="Name"
                 />
-                <Text>{value}</Text>
               </>
             )}
             name="firstName"

@@ -2,9 +2,10 @@ import React from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
 import ButtonAdd from './ButtonAdd';
 export default function ShopCart(props) {
+  const {onPress} = props;
   return (
     <View style={styles.container}>
-      <ButtonAdd />
+      <ButtonAdd onPress={onPress} />
       <Image style={styles.picture} source={{uri: props.img}} />
       <Text style={styles.price}>{props.price}</Text>
       <Text style={styles.about}>Include:{props.about}</Text>
