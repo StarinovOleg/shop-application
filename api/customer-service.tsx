@@ -2,7 +2,7 @@ import axios from 'axios';
 interface AddUser {
   phone: string;
   firstName: string;
-  order: {[key: string]: string};
+  order: string;
 }
 export const CustomerService = {
   async addcustomer({phone, firstName, order}: AddUser) {

@@ -31,7 +31,7 @@ export default function ScreenThree(props) {
     defaultValues: {
       firstName: '',
       phone: '',
-      order: '',
+      order: {val},
     },
   });
   const onSubmit = data => {
@@ -51,7 +51,8 @@ export default function ScreenThree(props) {
         <ButtonBack onPress={() => props.navigation.goBack()} />
         <View style={styles.buttonContainer}>
           <Text style={styles.titlePage}>Your order</Text>
-          <Text style={styles.titleOrder}>Name items:{val[1]}</Text>
+          <Text style={styles.titleOrder}>Name items: {val[1]}</Text>
+
           <Text style={styles.titleOrder}>Total price:{val[0]}</Text>
 
           <Controller
@@ -106,21 +107,6 @@ export default function ScreenThree(props) {
           {errors.phone && (
             <Text>Here not correct or empty email. Use format: 0123456789</Text>
           )}
-          <Controller
-            control={control}
-            render={({field: {onChange, value}}) => (
-              <>
-                <TextInput
-                  style={styles.removeStyleInput}
-                  editable={false}
-                  selectTextOnFocus={false}
-                  onChangeText={onChange}
-                  value={value}
-                />
-              </>
-            )}
-            name="order"
-          />
 
           <Button
             title="Submit"
