@@ -15,13 +15,13 @@ export default function ScreenOne(props) {
   const onCheckout = () => {
     props.navigation.navigate('ScreenThree');
   };
-  const count = 0;
+  
   return (
     <View style={styles.backgroundBody}>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.viewContainer}>
-        <Header count={count} onPress={onCheckout} />
+        <Header onPress={onCheckout} />
         <Title />
         <Subtitle />
         <View style={styles.buttonContainer}>

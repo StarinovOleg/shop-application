@@ -8,17 +8,28 @@ export default function Shop() {
   const products = useGetProducts();
   //const {onPress} = props;
   const {val, setVal} = useContext(ShopContext);
+  const context = useContext(ShopContext);
+  const listItems2 = context.products?.map(products => (
+    <View style={styles.containerItem} key={products.id}>
+      <ShopCart
+        price={products.price}
+        about={products.title}
+        img={products.id}
+        onPress={context.addProductToCart.bind(this, products)}
+      />
+    </View>
+  ));
   const listItems = products?.map((item, index) => (
     <View style={styles.containerItem} key={index}>
       <ShopCart
         price={item.price}
         about={item.product_name}
         img={item.avatar}
-        onPress={() => setVal([item.price, item.product_name])}
+        onPress={context.addProductToCart.bind(this, products)}
       />
     </View>
   ));
-  return <View style={styles.container}>{listItems}</View>;
+  return <View style={styles.container}>{listItems2}</View>;
 }
 
 const styles = StyleSheet.create({

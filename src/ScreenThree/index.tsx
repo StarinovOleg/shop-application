@@ -15,13 +15,20 @@ import ButtonBack from '../ScreenSecond/ButtonBack';
 import {useForm, Controller} from 'react-hook-form';
 import {useContext} from 'react';
 import ShopContext from '../Common/ShopContext';
+import ShopCart from './ShopCart';
+
 export default function ScreenThree(props) {
   //const [name, setName] = useState('');
   //const [order, setOrder] = useState('');
   //const [phone, setPhone] = useState('');
   const queryaddemail = useAddCustomer();
-  const count = 0;
-  const {val, setVal} = useContext(ShopContext);
+
+  const context = useContext(ShopContext);
+  const listItems = context.cart.map(cartItem => (
+    <View key={cartItem.id}>
+      <Text>{cartItem.title}</Text>
+    </View>
+  ));
   const {
     control,
     handleSubmit,
@@ -31,7 +38,7 @@ export default function ScreenThree(props) {
     defaultValues: {
       firstName: '',
       phone: '',
-      order: {val},
+      order: context.cart,
     },
   });
   const onSubmit = data => {
@@ -47,13 +54,16 @@ export default function ScreenThree(props) {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.viewContainer}>
-        <Header count={count} />
+        <Header />
         <ButtonBack onPress={() => props.navigation.goBack()} />
         <View style={styles.buttonContainer}>
           <Text style={styles.titlePage}>Your order</Text>
-          <Text style={styles.titleOrder}>Name items: {val[1]}</Text>
-
-          <Text style={styles.titleOrder}>Total price:{val[0]}</Text>
+          {context.cart.length <= 0 && <Text>No Item in the Cart!</Text>}
+          <View>
+            <Text>{listItems}</Text>
+          </View>
+          <Text style={styles.titleOrder}>Name items: </Text>
+          <Text style={styles.titleOrder}>Total price:</Text>
 
           <Controller
             control={control}
