@@ -1,7 +1,6 @@
-import React, {useState, useMemo} from 'react';
+import React from 'react';
 import type {Node} from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
-import ShopContext from './src/Common/ShopContext';
 import ScreenOne from './src/ScreenOne';
 import ScreenSecond from './src/ScreenSecond';
 import ScreenThree from './src/ScreenThree';
@@ -19,23 +18,19 @@ const queryClient = new QueryClient({
   },
 });
 const App: () => Node = ({navigation}) => {
-  const [val, setVal] = useState(null);
-  const provideValue = useMemo(() => ({val, setVal}), [val, setVal]);
   return (
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
-        <ShopContext.Provider value={provideValue}>
-          <CartState>
-            <Stack.Navigator
-              screenOptions={{
-                headerShown: false,
-              }}>
-              <Stack.Screen name="ScreenOne" component={ScreenOne} />
-              <Stack.Screen name="ScreenSecond" component={ScreenSecond} />
-              <Stack.Screen name="ScreenThree" component={ScreenThree} />
-            </Stack.Navigator>
-          </CartState>
-        </ShopContext.Provider>
+        <CartState>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}>
+            <Stack.Screen name="ScreenOne" component={ScreenOne} />
+            <Stack.Screen name="ScreenSecond" component={ScreenSecond} />
+            <Stack.Screen name="ScreenThree" component={ScreenThree} />
+          </Stack.Navigator>
+        </CartState>
       </QueryClientProvider>
     </NavigationContainer>
   );
