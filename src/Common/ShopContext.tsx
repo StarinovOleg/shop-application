@@ -1,4 +1,7 @@
 import {createContext} from 'react';
-export const ShopContext = createContext(null);
+const ShopContext = createContext({
+  val: '',
+  setVal: () => {},
+});
 
 export default ShopContext;

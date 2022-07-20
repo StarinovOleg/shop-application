@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import type {Node} from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import ShopContext from './src/Common/ShopContext';
@@ -19,12 +19,12 @@ const queryClient = new QueryClient({
   },
 });
 const App: () => Node = ({navigation}) => {
-  const [val, setVal] = useState([]);
-
+  const [val, setVal] = useState(null);
+  const provideValue = useMemo(() => ({val, setVal}), [val, setVal]);
   return (
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
-        <ShopContext.Provider value={{val, setVal}}>
+        <ShopContext.Provider value={provideValue}>
           <Stack.Navigator
             screenOptions={{
               headerShown: false,
