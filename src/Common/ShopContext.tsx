@@ -1,7 +1,4 @@
 import {createContext} from 'react';
-const ShopContext = createContext({
-  val: '',
-  setVal: () => {},
-});
+const ShopContext = createContext(null);
 
 export default ShopContext;
