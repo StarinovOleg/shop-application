@@ -24,7 +24,13 @@ export default function ScreenSecond(props) {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.viewContainer}>
-        <Header count={count} onPress={onCheckout} />
+        <Header
+          count={count}
+          onPress={onCheckout}
+          onPressIn={() => {
+            props.navigation.navigate('ScreenOne');
+          }}
+        />
         <ButtonBack onPress={() => props.navigation.goBack()} />
         <Text>{listItems}</Text>
         <Shop />
