@@ -1,13 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import type {Node} from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
-import ShopContext from './src/Common/ShopContext';
 import ScreenOne from './src/ScreenOne';
 import ScreenSecond from './src/ScreenSecond';
 import ScreenThree from './src/ScreenThree';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
+import CartState from './src/Common/CartState';
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,12 +18,10 @@ const queryClient = new QueryClient({
   },
 });
 const App: () => Node = ({navigation}) => {
-  const [val, setVal] = useState([]);
-
   return (
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
-        <ShopContext.Provider value={{val, setVal}}>
+        <CartState>
           <Stack.Navigator
             screenOptions={{
               headerShown: false,
@@ -33,7 +30,7 @@ const App: () => Node = ({navigation}) => {
             <Stack.Screen name="ScreenSecond" component={ScreenSecond} />
             <Stack.Screen name="ScreenThree" component={ScreenThree} />
           </Stack.Navigator>
-        </ShopContext.Provider>
+        </CartState>
       </QueryClientProvider>
     </NavigationContainer>
   );

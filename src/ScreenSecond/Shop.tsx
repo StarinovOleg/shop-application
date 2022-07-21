@@ -4,20 +4,17 @@ import ShopCart from './ShopCart';
 import useGetProducts from '../hooks/get-product-hook';
 import {useContext} from 'react';
 import ShopContext from '../Common/ShopContext';
-export default function Shop(props) {
+export default function Shop() {
   const products = useGetProducts();
   //const {onPress} = props;
-  const {val, setVal} = useContext(ShopContext);
-  const listItems = products?.map((item, index) => (
-    <View style={styles.containerItem} key={index}>
+  const context = useContext(ShopContext);
+  const listItems = context.products?.map(products => (
+    <View style={styles.containerItem} key={products.id}>
       <ShopCart
-        price={item.price}
-        about={item.product_name}
-        img={item.avatar}
-        /* onPress={() => {
-          Alert.alert('ok');
-        }}*/
-        onPress={() => setVal([item.price, item.product_name])}
+        price={products.price}
+        about={products.product_name}
+        img={products.avatar}
+        onPress={context.addProductToCart.bind(this, products)}
       />
     </View>
   ));

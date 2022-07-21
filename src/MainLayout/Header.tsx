@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Cart from '../Common/Cart';
+import ShopContext from '../Common/ShopContext';
 export default function Header(props) {
-  const {count, onPress} = props;
+  const {onPress} = props;
+  const context = useContext(ShopContext);
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>May Phong Flowers</Text>
-      <Text style={styles.textOrder}>{count}</Text>
+      <Text style={styles.textOrder}>
+        {context.cart.reduce((count, curItem) => {
+          return count + curItem.quantity;
+        }, 0)}
+      </Text>
       <View style={styles.align}>
         <Cart onPress={onPress} />
       </View>

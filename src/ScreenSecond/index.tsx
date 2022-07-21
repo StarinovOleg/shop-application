@@ -13,7 +13,12 @@ export default function ScreenSecond(props) {
     props.navigation.navigate('ScreenThree');
   };
   const {val, setVal} = useContext(ShopContext);
-
+  const context = useContext(ShopContext);
+  const listItems = context.cart.map(cartItem => (
+    <View key={cartItem.id}>
+      <Text>{cartItem.name}</Text>
+    </View>
+  ));
   return (
     <View style={styles.backgroundBody}>
       <ScrollView
@@ -21,7 +26,7 @@ export default function ScreenSecond(props) {
         style={styles.viewContainer}>
         <Header count={count} onPress={onCheckout} />
         <ButtonBack onPress={() => props.navigation.goBack()} />
-        <Text>{val}</Text>
+        <Text>{listItems}</Text>
         <Shop />
       </ScrollView>
     </View>

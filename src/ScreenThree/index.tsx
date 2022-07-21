@@ -15,13 +15,21 @@ import ButtonBack from '../ScreenSecond/ButtonBack';
 import {useForm, Controller} from 'react-hook-form';
 import {useContext} from 'react';
 import ShopContext from '../Common/ShopContext';
+
+
 export default function ScreenThree(props) {
-  //const [name, setName] = useState('');
-  //const [order, setOrder] = useState('');
-  //const [phone, setPhone] = useState('');
   const queryaddemail = useAddCustomer();
-  const count = 0;
-  const {val, setVal} = useContext(ShopContext);
+
+  const context = useContext(ShopContext);
+  const listItems = context.cart.map(cartItem => (
+    <View key={cartItem.id}>
+      <Text style={styles.titleOrder}>
+        <Text style={styles.itemText}> Name:</Text> {cartItem.product_name}
+        <Text style={styles.itemText}> Price:</Text> {cartItem.price}
+        <Text style={styles.itemText}> Quantity:</Text> ({cartItem.quantity})
+      </Text>
+    </View>
+  ));
   const {
     control,
     handleSubmit,
@@ -31,7 +39,7 @@ export default function ScreenThree(props) {
     defaultValues: {
       firstName: '',
       phone: '',
-      order: {val},
+      order: context.cart,
     },
   });
   const onSubmit = data => {
@@ -47,73 +55,75 @@ export default function ScreenThree(props) {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.viewContainer}>
-        <Header count={count} />
+        <Header />
         <ButtonBack onPress={() => props.navigation.goBack()} />
-        <View style={styles.buttonContainer}>
-          <Text style={styles.titlePage}>Your order</Text>
-          <Text style={styles.titleOrder}>Name items: {val[1]}</Text>
+        <Text style={styles.titlePage}>Your order</Text>
+        {context.cart.length <= 0 && <Text>No Item in the Cart!</Text>}
+        {context.cart.length > 0 && (
+          <View style={styles.buttonContainer}>
+            {listItems}
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({field: {onChange, onBlur, value}}) => (
+                <>
+                  <Text style={styles.titleOrder}>Your Name:</Text>
+                  <TextInput
+                    style={styles.input}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder="Name"
+                  />
+                </>
+              )}
+              name="firstName"
+            />
+            {errors.firstName && <Text>This is empty.</Text>}
 
-          <Text style={styles.titleOrder}>Total price:{val[0]}</Text>
-
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({field: {onChange, onBlur, value}}) => (
-              <>
-                <Text style={styles.titleOrder}>Your Name:</Text>
-                <TextInput
-                  style={styles.input}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  placeholder="Name"
-                />
-              </>
+            <Controller
+              control={control}
+              rules={{
+                minLength: 10,
+                maxLength: 10,
+                required: true,
+                pattern: {
+                  value: /\d+/g,
+                  message: 'Not a valid email',
+                },
+              }}
+              render={({field: {onChange, onBlur, value}}) => (
+                <>
+                  <Text style={styles.titleOrder}>Here your number phone:</Text>
+                  <Text style={styles.titleNotification}>
+                    Shop not save your number phone for advise and any use
+                  </Text>
+                  <TextInput
+                    style={styles.input}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder="Phone"
+                  />
+                </>
+              )}
+              name="phone"
+            />
+            {errors.phone && (
+              <Text>
+                Here not correct or empty email. Use format: 0123456789
+              </Text>
             )}
-            name="firstName"
-          />
-          {errors.firstName && <Text>This is empty.</Text>}
 
-          <Controller
-            control={control}
-            rules={{
-              minLength: 10,
-              maxLength: 10,
-              required: true,
-              pattern: {
-                value: /\d+/g,
-                message: 'Not a valid email',
-              },
-            }}
-            render={({field: {onChange, onBlur, value}}) => (
-              <>
-                <Text style={styles.titleOrder}>Here your number phone:</Text>
-                <Text style={styles.titleNotification}>
-                  Shop not save your number phone for advise and any use
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  placeholder="Phone"
-                />
-              </>
-            )}
-            name="phone"
-          />
-          {errors.phone && (
-            <Text>Here not correct or empty email. Use format: 0123456789</Text>
-          )}
-
-          <Button
-            title="Submit"
-            onPress={handleSubmit(onSubmit)}
-            color="#661A0A"
-          />
-        </View>
+            <Button
+              title="Submit"
+              onPress={handleSubmit(onSubmit)}
+              color="#661A0A"
+            />
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -128,7 +138,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3D5CE',
     margin: 10,
   },
-
+  itemText: {
+    fontSize: 12,
+  },
   buttonContainer: {
     marginLeft: 5,
     marginRight: 5,
