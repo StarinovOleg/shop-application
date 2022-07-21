@@ -58,7 +58,11 @@ export default function ScreenThree(props) {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.viewContainer}>
-        <Header />
+        <Header
+          onPressIn={() => {
+            props.navigation.navigate('ScreenOne');
+          }}
+        />
         <ButtonBack onPress={() => props.navigation.goBack()} />
         <Text style={styles.titlePage}>Your order</Text>
         {context.cart.length <= 0 && <Text>No Item in the Cart!</Text>}

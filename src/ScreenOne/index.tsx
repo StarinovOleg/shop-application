@@ -42,7 +42,9 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     backgroundColor: '#F3D5CE',
-    margin: 10,
+    //margin: 10,
+    marginTop: 25,
+    marginBottom: 25,
   },
 
   buttonContainer: {

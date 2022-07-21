@@ -3,12 +3,14 @@ import {View, Text, StyleSheet} from 'react-native';
 import Cart from '../Common/Cart';
 import ShopContext from '../Common/ShopContext';
 export default function Header(props) {
-  const {onPress} = props;
+  const {onPress, onPressIn} = props;
   const context = useContext(ShopContext);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>May Phong Flowers</Text>
+      <Text style={styles.text} onPress={onPressIn}>
+        May Phong Flowers
+      </Text>
       <Text style={styles.textOrder}>
         {context.cart.reduce((count, curItem) => {
           return count + curItem.quantity;
@@ -28,19 +30,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: 30,
+    fontSize: 25,
     color: '#661A0A',
     fontFamily: 'Pacifico-Regular',
-    margin: 6,
+    margin: 4,
   },
   textOrder: {
-    fontSize: 20,
+    fontSize: 25,
     color: 'brown',
-    marginTop: 20,
+    marginTop: 4,
     fontFamily: 'Pacifico-Regular',
   },
   align: {
-    marginTop: 32,
+    marginTop: 15,
     marginLeft: 10,
     marginRight: 10,
   },
