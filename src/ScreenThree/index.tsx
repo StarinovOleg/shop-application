@@ -12,10 +12,10 @@ import {
   Alert,
 } from 'react-native';
 import ButtonBack from '../ScreenSecond/ButtonBack';
+import ButtonRemove from './ButtonRemove';
 import {useForm, Controller} from 'react-hook-form';
 import {useContext} from 'react';
 import ShopContext from '../Common/ShopContext';
-
 
 export default function ScreenThree(props) {
   const queryaddemail = useAddCustomer();
@@ -27,6 +27,9 @@ export default function ScreenThree(props) {
         <Text style={styles.itemText}> Name:</Text> {cartItem.product_name}
         <Text style={styles.itemText}> Price:</Text> {cartItem.price}
         <Text style={styles.itemText}> Quantity:</Text> ({cartItem.quantity})
+        <ButtonRemove
+          onPress={context.removeProductFromCart.bind(this, cartItem.id)}
+        />
       </Text>
     </View>
   ));
