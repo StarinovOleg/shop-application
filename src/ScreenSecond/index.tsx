@@ -12,7 +12,6 @@ export default function ScreenSecond(props) {
   const onCheckout = () => {
     props.navigation.navigate('ScreenThree');
   };
-  const {val, setVal} = useContext(ShopContext);
   const context = useContext(ShopContext);
   const listItems = context.cart.map(cartItem => (
     <View key={cartItem.id}>
