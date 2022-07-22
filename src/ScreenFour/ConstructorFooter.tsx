@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import {useContext} from 'react';
 import ShopContext from '../Common/ShopContext';
+
 export default function ConstructorFooter(props) {
-  const {img, onPressBuyNow} = props;
+  const {onPressBuyNow, onPressRedirect} = props;
   const context = useContext(ShopContext);
   const listItems = context.cart.map(cartItem => (
     <View key={cartItem.id}>
@@ -14,10 +15,16 @@ export default function ConstructorFooter(props) {
     <View style={styles.container}>
       <View style={styles.blockOne}>
         <Text style={styles.constructorTitle}>Trading Constructor Items</Text>
-        <View style={styles.itemBlock}>{listItems}</View>
+        <View style={styles.itemBlock}>
+          <ScrollView horizontal>{listItems}</ScrollView>
+        </View>
       </View>
       <View style={styles.blockBetween}>
-        <Text style={styles.textContinue}>&gt;</Text>
+        <Text style={styles.textContinue}>
+          {context.cart.length > 0 ? (
+            <Text onPress={onPressRedirect}>&gt;</Text>
+          ) : null}
+        </Text>
       </View>
       <View style={styles.blockSecond}>
         <Text style={styles.textBuyNow} onPress={onPressBuyNow}>

@@ -32,6 +32,7 @@ export default function ScreenFour(props) {
       </ScrollView>
       <ConstructorFooter
         onPressBuyNow={() => props.navigation.navigate('ScreenThree')}
+        onPressRedirect={() => props.navigation.navigate('ScreenThree')}
       />
     </View>
   );
