@@ -1,37 +1,25 @@
 import React from 'react';
 
 import Header from '../MainLayout/Header';
+import ButtonBack from '../MainLayout/ButtonBack';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import Title from './Title';
-import Subtitle from './Subtitle';
-import Promo from './Promo';
-import AppButton from './ButtonExplore';
-import ButtonShop from './ButtonShop';
 
-export default function ScreenOne(props) {
-  const onPress = () => {
+export default function ScreenFour(props) {
+  /** const onPress = () => {
     props.navigation.navigate('ScreenSecond');
   };
-  const onPressScreenFour = () => {
-    props.navigation.navigate('ScreenFour');
-  };
+
+*/
   const onCheckout = () => {
     props.navigation.navigate('ScreenThree');
   };
-
   return (
     <View style={styles.backgroundBody}>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.viewContainer}>
         <Header onPress={onCheckout} />
-        <Title />
-        <Subtitle />
-        <View style={styles.buttonContainer}>
-          <AppButton title="Explore" onPress={onPressScreenFour} />
-          <ButtonShop title="Shop" onPress={onPress} />
-        </View>
-        <Promo />
+        <ButtonBack onPress={() => props.navigation.goBack()} />
       </ScrollView>
     </View>
   );
@@ -49,11 +37,11 @@ const styles = StyleSheet.create({
     marginTop: 25,
     marginBottom: 25,
   },
-
+  /**
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginLeft: 5,
     marginRight: 5,
-  },
+  }, */
 });

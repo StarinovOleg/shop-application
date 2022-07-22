@@ -3,7 +3,7 @@ import {View, StyleSheet, Modal, Image} from 'react-native';
 import ShopCart from './ShopCart';
 import {useContext} from 'react';
 import ShopContext from '../Common/ShopContext';
-import ButtonBack from './ButtonBack';
+import ButtonBack from '../MainLayout/ButtonBack';
 export default function Shop() {
   const context = useContext(ShopContext);
   const [modalVisible, setModalVisible] = useState(false);
