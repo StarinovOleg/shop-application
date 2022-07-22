@@ -4,6 +4,7 @@ import {QueryClient, QueryClientProvider} from 'react-query';
 import ScreenOne from './src/ScreenOne';
 import ScreenSecond from './src/ScreenSecond';
 import ScreenThree from './src/ScreenThree';
+import ScreenFour from './src/ScreenFour';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CartState from './src/Common/CartState';
@@ -29,6 +30,7 @@ const App: () => Node = ({navigation}) => {
             <Stack.Screen name="ScreenOne" component={ScreenOne} />
             <Stack.Screen name="ScreenSecond" component={ScreenSecond} />
             <Stack.Screen name="ScreenThree" component={ScreenThree} />
+            <Stack.Screen name="ScreenFour" component={ScreenFour} />
           </Stack.Navigator>
         </CartState>
       </QueryClientProvider>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from '../MainLayout/Header';
 import {ScrollView, StyleSheet, View, Button, Text} from 'react-native';
-import ButtonBack from './ButtonBack';
+import ButtonBack from '../MainLayout/ButtonBack';
 import Shop from './Shop';
 import {useContext} from 'react';
 import ShopContext from '../Common/ShopContext';

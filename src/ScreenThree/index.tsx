@@ -11,7 +11,7 @@ import {
   Text,
   Alert,
 } from 'react-native';
-import ButtonBack from '../ScreenSecond/ButtonBack';
+import ButtonBack from '../MainLayout/ButtonBack';
 import ButtonRemove from './ButtonRemove';
 import {useForm, Controller} from 'react-hook-form';
 import {useContext} from 'react';
