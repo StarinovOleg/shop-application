@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-export default function Title() {
+export default function Title(props) {
+  const {textTitle} = props;
   return (
-    <>
-      <View style={styles.container}>
-        <Text style={styles.text}>Flowers That Everyone Loves</Text>
-      </View>
-    </>
+    <View style={styles.container}>
+      <Text style={styles.text}>{textTitle}</Text>
+    </View>
   );
 }
 

@@ -16,7 +16,9 @@ import ButtonRemove from './ButtonRemove';
 import {useForm, Controller} from 'react-hook-form';
 import {useContext} from 'react';
 import ShopContext from '../Common/ShopContext';
+import Title from '../MainLayout/Title';
 
+const textTitle = 'Your order';
 export default function ScreenThree(props) {
   const queryaddemail = useAddCustomer();
 
@@ -64,7 +66,8 @@ export default function ScreenThree(props) {
           }}
         />
         <ButtonBack onPress={() => props.navigation.goBack()} />
-        <Text style={styles.titlePage}>Your order</Text>
+
+        <Title textTitle={textTitle} />
         {context.cart.length <= 0 && <Text>No Item in the Cart!</Text>}
         {context.cart.length > 0 && (
           <View style={styles.buttonContainer}>
@@ -162,13 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'none',
     borderWidth: 0,
   },
-  titlePage: {
-    fontSize: 40,
-    color: '#661A0A',
-    padding: 3,
-    fontFamily: 'Poppins-Medium',
-    textAlign: 'left',
-  },
+
   titleOrder: {
     fontSize: 10,
     color: '#661A0A',

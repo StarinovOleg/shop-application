@@ -1,37 +1,27 @@
 import React from 'react';
 
 import Header from '../MainLayout/Header';
-import {ScrollView, StyleSheet, View, Button, Text} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import ButtonBack from '../MainLayout/ButtonBack';
 import Shop from './Shop';
-import {useContext} from 'react';
-import ShopContext from '../Common/ShopContext';
 
 export default function ScreenSecond(props) {
-  const count = 0;
   const onCheckout = () => {
     props.navigation.navigate('ScreenThree');
   };
-  const context = useContext(ShopContext);
-  const listItems = context.cart.map(cartItem => (
-    <View key={cartItem.id}>
-      <Text>{cartItem.name}</Text>
-    </View>
-  ));
+
   return (
     <View style={styles.backgroundBody}>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.viewContainer}>
         <Header
-          count={count}
           onPress={onCheckout}
           onPressIn={() => {
             props.navigation.navigate('ScreenOne');
           }}
         />
         <ButtonBack onPress={() => props.navigation.goBack()} />
-        <Text>{listItems}</Text>
         <Shop />
       </ScrollView>
     </View>
