@@ -6,7 +6,7 @@ export default function ShopCart(props) {
   const {onPress, onPressSize} = props;
   return (
     <View style={styles.container}>
-      <ButtonAdd onPress={onPress} />
+      <ButtonAdd onPress={onPress} buttonAlign={{right: 10}} />
       <ButtonSize onPress={onPressSize} />
       <Image style={styles.picture} source={{uri: props.img}} />
       <Text style={styles.price}>{props.price}</Text>

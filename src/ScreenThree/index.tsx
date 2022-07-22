@@ -56,10 +56,8 @@ export default function ScreenThree(props) {
   };
 
   return (
-    <View style={styles.backgroundBody}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.viewContainer}>
+    <View style={styles.viewContainer}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Header
           onPressIn={() => {
             props.navigation.navigate('ScreenOne');
@@ -140,13 +138,10 @@ export default function ScreenThree(props) {
 }
 
 const styles = StyleSheet.create({
-  backgroundBody: {
-    backgroundColor: '#F9C0E7',
-    flex: 1,
-  },
   viewContainer: {
     backgroundColor: '#F3D5CE',
     margin: 10,
+    flex: 1,
   },
   itemText: {
     fontSize: 12,

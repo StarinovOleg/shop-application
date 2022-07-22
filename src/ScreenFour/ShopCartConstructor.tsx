@@ -8,8 +8,8 @@ export default function ShopCartConstructor(props) {
     <View style={styles.container}>
       <ButtonAdd onPress={onPress} />
       <Image style={styles.picture} source={{uri: props.img}} />
-      <Text style={styles.price}>{props.price}</Text>
-      <Text style={styles.about}>{props.about}</Text>
+      <Text style={styles.text}>{props.price}</Text>
+      <Text style={styles.text}>{props.about}</Text>
     </View>
   );
 }
