@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, Pressable, Image} from 'react-native';
 
 export default function ButtonAdd(props) {
-  const {onPress} = props;
+  const {onPress, buttonAlign} = props;
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+    <Pressable style={[styles.button, buttonAlign]} onPress={onPress}>
       <Image
         source={require('../../assets/icons/add.png')}
         style={styles.img}
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     font: 'inherit',
     cursor: 'pointer',
     outline: 'inherit',
-    right: 10,
     bottom: 0,
     width: 40,
     height: 40,

@@ -5,7 +5,7 @@ import ScreenOne from './src/ScreenOne';
 import ScreenSecond from './src/ScreenSecond';
 import ScreenThree from './src/ScreenThree';
 import ScreenFour from './src/ScreenFour';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CartState from './src/Common/CartState';
 const Stack = createNativeStackNavigator();
@@ -18,9 +18,17 @@ const queryClient = new QueryClient({
     },
   },
 });
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#F9C0E7',
+    color: '#661A0A',
+  },
+};
 const App: () => Node = ({navigation}) => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <QueryClientProvider client={queryClient}>
         <CartState>
           <Stack.Navigator

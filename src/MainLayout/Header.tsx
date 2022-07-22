@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 25,
-    color: '#661A0A',
     fontFamily: 'Pacifico-Regular',
     margin: 4,
   },

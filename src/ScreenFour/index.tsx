@@ -20,17 +20,15 @@ export default function ScreenFour(props) {
     props.navigation.navigate('ScreenThree');
   };
   return (
-    <View style={styles.backgroundBody}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.viewContainer}>
-        <Header
-          onPress={onCheckout}
-          onPressIn={() => {
-            props.navigation.navigate('ScreenOne');
-          }}
-        />
-        <ButtonBack onPress={() => props.navigation.goBack()} />
+    <View style={styles.viewContainer}>
+      <Header
+        onPress={onCheckout}
+        onPressIn={() => {
+          props.navigation.navigate('ScreenOne');
+        }}
+      />
+      <ButtonBack onPress={() => props.navigation.goBack()} />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Title textTitle={textTitle} />
         <Subtitle textSubtitle={textSubtitle} />
         <ShopConstructor />
@@ -40,16 +38,9 @@ export default function ScreenFour(props) {
 }
 
 const styles = StyleSheet.create({
-  backgroundBody: {
-    backgroundColor: '#F9C0E7',
-    flex: 1,
-    alignItems: 'center',
-  },
   viewContainer: {
     backgroundColor: '#F3D5CE',
-    //margin: 10,
-    marginTop: 25,
-    marginBottom: 25,
+    margin: 10,
   },
   /**
   buttonContainer: {

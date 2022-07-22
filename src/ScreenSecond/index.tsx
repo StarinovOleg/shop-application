@@ -11,17 +11,15 @@ export default function ScreenSecond(props) {
   };
 
   return (
-    <View style={styles.backgroundBody}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.viewContainer}>
-        <Header
-          onPress={onCheckout}
-          onPressIn={() => {
-            props.navigation.navigate('ScreenOne');
-          }}
-        />
-        <ButtonBack onPress={() => props.navigation.goBack()} />
+    <View style={styles.viewContainer}>
+      <Header
+        onPress={onCheckout}
+        onPressIn={() => {
+          props.navigation.navigate('ScreenOne');
+        }}
+      />
+      <ButtonBack onPress={() => props.navigation.goBack()} />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Shop />
       </ScrollView>
     </View>
@@ -29,16 +27,8 @@ export default function ScreenSecond(props) {
 }
 
 const styles = StyleSheet.create({
-  backgroundBody: {flex: 1, backgroundColor: '#F9C0E7'},
   viewContainer: {
     backgroundColor: '#F3D5CE',
     margin: 10,
-  },
-
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginLeft: 25,
-    marginRight: 25,
   },
 });
