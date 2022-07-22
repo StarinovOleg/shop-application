@@ -3,7 +3,13 @@ import React from 'react';
 import Header from '../MainLayout/Header';
 import ButtonBack from '../MainLayout/ButtonBack';
 import {ScrollView, StyleSheet, View} from 'react-native';
+import Title from '../MainLayout/Title';
+import Subtitle from '../MainLayout/Subtitle';
+import ShopConstructor from './ShopConstructor';
 
+const textTitle = 'Chose components';
+const textSubtitle =
+  'In our new store you can create your own bouquet, just the way you want';
 export default function ScreenFour(props) {
   /** const onPress = () => {
     props.navigation.navigate('ScreenSecond');
@@ -18,8 +24,16 @@ export default function ScreenFour(props) {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.viewContainer}>
-        <Header onPress={onCheckout} />
+        <Header
+          onPress={onCheckout}
+          onPressIn={() => {
+            props.navigation.navigate('ScreenOne');
+          }}
+        />
         <ButtonBack onPress={() => props.navigation.goBack()} />
+        <Title textTitle={textTitle} />
+        <Subtitle textSubtitle={textSubtitle} />
+        <ShopConstructor />
       </ScrollView>
     </View>
   );

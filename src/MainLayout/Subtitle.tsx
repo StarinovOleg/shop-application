@@ -1,12 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-export default function Subtitle() {
+export default function Subtitle(props) {
+  const {textSubtitle} = props;
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        Flowers for every celebrate. Professional florist with many age
-        experience create beautiful bouquet for every situation.
-      </Text>
+      <Text style={styles.text}>{textSubtitle}</Text>
     </View>
   );
 }
