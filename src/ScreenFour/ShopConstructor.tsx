@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import ShopCartConstructor from './ShopCartConstructor';
 import {useContext} from 'react';
 import ShopContext from '../Common/ShopContext';
+import ConstructorFooter from './ConstructorFooter';
 
 export default function Shop() {
   const context = useContext(ShopContext);
